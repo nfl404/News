@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/category/index.html";i:1501580569;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1501574628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,11 +72,11 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="fa fa-w fa-user"></i>
-                            {:session('admin.admin_username')}
+                            <?php echo session('admin.admin_username'); ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{:url('admin/entry/pass')}">修改密码</a></li>
+                            <li><a href="<?php echo url('admin/entry/pass'); ?>">修改密码</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="">退出</a></li>
                         </ul>
@@ -101,7 +102,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample">
-                    <a href="{:url('admin/category/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/category/index'); ?>" class="list-group-item">
                         <i class="fa fa-institution " aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         栏目列表
@@ -185,7 +186,65 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            {block name='content'}{/block}
+            
+<ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+    <li>
+        <a href=""><i class="fa fa-cogs"></i>
+            栏目管理</a>
+    </li>
+    <li class="active">
+        <a href="">栏目列表</a>
+    </li>
+</ol>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="">栏目列表</a></li>
+    <li><a href="<?php echo url('store'); ?>">添加栏目</a></li>
+</ul>
+<form action="" method="post">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th width="80">编号</th>
+                    <th>栏目名称</th>
+                    <th width="200">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                <?php if(is_array($field) || $field instanceof \think\Collection || $field instanceof \think\Paginator): if( count($field)==0 ) : echo "" ;else: foreach($field as $key=>$vo): ?>
+                <tr>
+                    <td><?php echo $vo['cate_id']; ?></td>
+                    <td><?php echo $vo['_cate_name']; ?></td>
+                    <td>
+                        <div class="btn-group">
+                            <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="<?php echo url('addSon',['cate_id'=>$vo['cate_id']]); ?>">添加子类</a></li>
+                                <li><a href="<?php echo url('edit',['cate_id'=>$vo['cate_id']]); ?>">编辑</a></li>
+                                <li class="divider"></li>
+                                <li><a href="javascript:;" onclick="del(<?php echo $vo['cate_id']; ?>)">删除</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+<div class="pagination pagination-sm pull-right">
+</div>
+<script>
+    function del(cate_id) {
+        util.confirm('确定删除吗?',function(){
+            //alert('点击确定后执行的回调函数');
+            location.href="<?php echo url('del'); ?>"+'?cate_id='+cate_id;
+        })
+    }
+</script>
+
         </div>
     </div>
     <!--右侧主体区域部分结束 end-->

@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:81:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/login/index.html";i:1501554360;}*/ ?>
 <!DOCTYPE html>
 <html lang="en" class="bg-dark">
 <head>
@@ -34,7 +35,7 @@
                 <div class="form-group">
                     <label class="control-label">验证码</label>
                     <input type="text"  class="form-control input-lg col-md-6" name="code">
-                    <img src="{:captcha_src()}" alt="captcha" onclick="this.src=this.src+'?'+Math.random()"/>
+                    <img src="<?php echo captcha_src(); ?>" alt="captcha" onclick="this.src=this.src+'?'+Math.random()"/>
                 </div>
                 <button type="submit" class="btn btn-primary">登陆后台</button>
             </form>

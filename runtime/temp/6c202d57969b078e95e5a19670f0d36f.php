@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/category/store.html";i:1501557197;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1501574628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,11 +72,11 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="fa fa-w fa-user"></i>
-                            {:session('admin.admin_username')}
+                            <?php echo session('admin.admin_username'); ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{:url('admin/entry/pass')}">修改密码</a></li>
+                            <li><a href="<?php echo url('admin/entry/pass'); ?>">修改密码</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="">退出</a></li>
                         </ul>
@@ -101,7 +102,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample">
-                    <a href="{:url('admin/category/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/category/index'); ?>" class="list-group-item">
                         <i class="fa fa-institution " aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         栏目列表
@@ -185,7 +186,53 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            {block name='content'}{/block}
+            
+<ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+    <li>
+        <a href=""><i class="fa fa-cogs"></i>
+            栏目管理</a>
+    </li>
+    <li class="active">
+        <a href="">栏目添加</a>
+    </li>
+
+</ol>
+<ul class="nav nav-tabs" role="tablist">
+    <li><a href="<?php echo url('index'); ?>">栏目列表</a></li>
+    <li class="active"><a href="">添加栏目</a></li>
+</ul>
+<form class="form-horizontal" id="form" action="" method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">栏目管理</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">栏目名称</label>
+                <div class="col-sm-9">
+                    <input type="text" name="cate_name"  class="form-control" placeholder="">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">所属栏目</label>
+                <div class="col-sm-9">
+                    <select class="js-example-basic-single form-control" name="cate_pid">
+                        <option value="0">顶级栏目</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">栏目排序</label>
+                <div class="col-sm-9">
+                    <input type="number" name="cate_sort"  class="form-control" placeholder="">
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">确定</button>
+</form>
+
         </div>
     </div>
     <!--右侧主体区域部分结束 end-->

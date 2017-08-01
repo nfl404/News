@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/entry/index.html";i:1501493017;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1501555192;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,9 +10,9 @@
     <link href="__STATIC__/admin/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
     <script src="__STATIC__/admin/js/jquery.min.js"></script>
     <script src="__STATIC__/admin/bootstrap-3.3.0-dist/dist/js/bootstrap.min.js"></script>
-    <!--<script src="resource/hdjs/app/util.js"></script>-->
-    <!--<script src="resource/hdjs/require.js"></script>-->
-    <!--<script src="resource/hdjs/app/config.js"></script>-->
+    <script src="resource/hdjs/app/util.js"></script>
+    <script src="resource/hdjs/require.js"></script>
+    <script src="resource/hdjs/app/config.js"></script>
     <!--[if lt IE 9]>
     <script src="http://cdn.bootcss.com/html5shiv/r29/html5.min.js"></script>
     <script src="http://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
@@ -28,21 +29,6 @@
             color: #337ab7;
         }
     </style>
-    <meta name="csrf-token" content="{{csrf_token()}}">
-    <script>
-        //模块配置项
-        var hdjs = {
-            //框架目录
-            'base': '__STATIC__/node_modules/hdjs',
-            //上传文件后台地址
-            'uploader': '?s=home/component/uploader',
-            //获取文件列表的后台地址
-            'filesLists': '?s=home/component/filesLists',
-        };
-    </script>
-    <script src="__STATIC__/node_modules/hdjs/app/util.js"></script>
-    <script src="__STATIC__/node_modules/hdjs/require.js"></script>
-    <script src="__STATIC__/node_modules/hdjs/config.js"></script>
 </head>
 <body>
 <div class="container-fluid admin-top">
@@ -71,11 +57,11 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="fa fa-w fa-user"></i>
-                            {:session('admin.admin_username')}
+                            <?php echo session('admin.admin_username'); ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{:url('admin/entry/pass')}">修改密码</a></li>
+                            <li><a href="<?php echo url('admin/entry/pass'); ?>">修改密码</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="">退出</a></li>
                         </ul>
@@ -101,7 +87,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample">
-                    <a href="{:url('admin/category/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/category/index'); ?>" class="list-group-item">
                         <i class="fa fa-institution " aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         栏目列表
@@ -185,7 +171,36 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            {block name='content'}{/block}
+            
+<table class="table table-hover">
+    <tbody>
+    <tr>
+        <th class="active" colspan="10">温馨提示</th>
+    </tr>
+    <tr>
+        <td colspan="10">
+            官网：<a href="http://www.houdunwang.com" target="_blank">www.houdunwang.com</a>
+            论坛：<a href="http://bbs.houdunwang.com" target="_blank">bbs.houdunwang.com</a>
+        </td>
+    </tr>
+    <tr>
+        <th class="active" colspan="10">系统信息</th>
+    </tr>
+    <tr>
+        <td>核心框架</td>
+        <td colspan="5">Thinkphp5</td>
+    </tr>
+    <tr>
+        <td>版本号</td>
+        <td colspan="5">1.0</td>
+    </tr>
+    <tr>
+        <td>开发者</td>
+        <td colspan="5">老聂</td>
+    </tr>
+    </tbody>
+</table>
+
         </div>
     </div>
     <!--右侧主体区域部分结束 end-->
