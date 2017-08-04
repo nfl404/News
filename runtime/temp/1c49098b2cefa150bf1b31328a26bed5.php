@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:82:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/article/edit.html";i:1501832068;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1501812491;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,10 +36,10 @@
             //框架目录
             'base': '__STATIC__/node_modules/hdjs',
             //上传文件后台地址
-            'uploader': "{:url('system/component/uploader')}",
+            'uploader': "<?php echo url('system/component/uploader'); ?>",
             //获取文件列表的后台地址
 
-            'filesLists': "{:url('system/component/filesLists')}?",
+            'filesLists': "<?php echo url('system/component/filesLists'); ?>?",
         };
     </script>
     <script src="__STATIC__/node_modules/hdjs/app/util.js"></script>
@@ -72,13 +73,13 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="fa fa-w fa-user"></i>
-                            {:session('admin.admin_username')}
+                            <?php echo session('admin.admin_username'); ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{:url('admin/entry/pass')}">修改密码</a></li>
+                            <li><a href="<?php echo url('admin/entry/pass'); ?>">修改密码</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="javascript:" onclick="logOut()">退出</a></li>
+                            <li><a href="">退出</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -102,7 +103,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample">
-                    <a href="{:url('admin/category/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/category/index'); ?>" class="list-group-item">
                         <i class="fa fa-institution " aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         栏目列表
@@ -119,7 +120,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample2">
-                    <a href="{:url('admin/tag/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/tag/index'); ?>" class="list-group-item">
                         <i class="fa fa-tags" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         标签列表
@@ -136,12 +137,12 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample3">
-                    <a href="{:url('admin/article/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/article/index'); ?>" class="list-group-item">
                         <i class="fa fa-navicon" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         文章列表
                     </a>
-                    <a href="{:url('admin/recycle/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/recycle/index'); ?>" class="list-group-item">
                         <i class="fa fa-bitbucket" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         回收站
@@ -158,7 +159,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample4">
-                    <a href="{:url('admin/link/index')}" class="list-group-item">
+                    <a href="" class="list-group-item">
                         <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         友链首页
@@ -175,7 +176,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample5">
-                    <a href="{:url('admin/website/index')}" class="list-group-item">
+                    <a href="" class="list-group-item">
                         <i class="fa fa-wrench" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         网站配置
@@ -186,7 +187,104 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            {block name='content'}{/block}
+            
+<ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+    <li>
+        <a href=""><i class="fa fa-cogs"></i>
+            文章管理</a>
+    </li>
+    <li class="active">
+        <a href="">文章编辑</a>
+    </li>
+</ol>
+<ul class="nav nav-tabs" role="tablist">
+    <li><a href="<?php echo url('index'); ?>">文章管理</a></li>
+    <li class="active"><a href="">文章编辑</a></li>
+</ul>
+<form class="form-horizontal" id="form"  action="" method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">文章管理</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">文章标题</label>
+                <div class="col-sm-9">
+                    <input type="text" name="arc_title"  class="form-control" placeholder="文章标题" value="<?php echo $oldData['arc_title']; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">文章作者</label>
+                <div class="col-sm-9">
+                    <input type="text" name="arc_author"  class="form-control" placeholder="文章作者" value="<?php echo $oldData['arc_author']; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">文章排序</label>
+                <div class="col-sm-9">
+                    <input type="number" name="arc_sort"  class="form-control" placeholder="" value="<?php echo $oldData['arc_sort']; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">所属分类</label>
+                <div class="col-sm-9">
+                    <select class="js-example-basic-single form-control" name="cate_id">
+                        <option value="0">请选择分类</option>
+                        <?php if(is_array($cateData) || $cateData instanceof \think\Collection || $cateData instanceof \think\Paginator): if( count($cateData)==0 ) : echo "" ;else: foreach($cateData as $key=>$vo): ?>
+                        <option <?php if($oldData['cate_id']==$vo['cate_id']): ?>selected<?php endif; ?> value="<?php echo $vo['cate_id']; ?>"><?php echo $vo['_cate_name']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">标签</label>
+                <div class="col-sm-9">
+                    <?php if(is_array($tagData) || $tagData instanceof \think\Collection || $tagData instanceof \think\Paginator): if( count($tagData)==0 ) : echo "" ;else: foreach($tagData as $key=>$vo): ?>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="tag[]" value="<?php echo $vo['tag_id']; ?>" <?php if(is_array($arcTag) || $arcTag instanceof \think\Collection || $arcTag instanceof \think\Paginator): if( count($arcTag)==0 ) : echo "" ;else: foreach($arcTag as $key=>$v): if($v['arc_id']==$oldData['arc_id']&$v['tag_id']==$vo['tag_id']): ?>checked="checked"<?php endif; endforeach; endif; else: echo "" ;endif; ?>> <?php echo $vo['tag_name']; ?>
+                    </label>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">缩略图</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="arc_thumb" readonly="" value="<?php echo $oldData['arc_thumb']; ?>">
+                        <div class="input-group-btn">
+                            <button onclick="upImage(this)" class="btn btn-default" type="button">选择图片</button>
+                        </div>
+                    </div>
+                    <div class="input-group" style="margin-top:5px;">
+                        <img src="<?php echo $oldData['arc_thumb']; ?>" class="img-responsive img-thumbnail" width="150">
+                        <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片" onclick="removeImg(this)">×</em>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">文章摘要</label>
+                <div class="col-sm-9">
+                    <textarea type="text" name="arc_digest"  class="form-control" placeholder="文章摘要" ><?php echo $oldData['arc_digest']; ?></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for=""  class="col-sm-2 control-label">文章内容</label>
+                <div class="col-sm-9">
+                    <textarea id="container" name="arc_content" style="height:300px;width:100%;"><?php echo $oldData['arc_content']; ?></textarea>
+                    <script>
+                        util.ueditor('container', {hash:2,data:'hd'}, function (editor) {
+                            //这是回调函数 editor是百度编辑器实例
+                        });
+                    </script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <input type="hidden" name="arc_id" value="<?php echo $oldData['arc_id']; ?>">
+    <button class="btn btn-primary" type="submit">确定</button>
+</form>
+
         </div>
     </div>
     <!--右侧主体区域部分结束 end-->
@@ -196,13 +294,5 @@
     <br>
     Powered by <a href="http://www.niefuling.com">老聂</a> v1.0 © 2017.7.31
 </div>
-<script>
-    function logOut() {
-        util.confirm('确定退出登陆吗？',function(){
-            //执行成功
-            location.href="{:url('admin/entry/logOut')}";
-        })
-    }
-</script>
 </body>
 </html>

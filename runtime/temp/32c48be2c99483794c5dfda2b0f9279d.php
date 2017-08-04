@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/website/index.html";i:1501840037;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1501841677;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,10 +36,10 @@
             //框架目录
             'base': '__STATIC__/node_modules/hdjs',
             //上传文件后台地址
-            'uploader': "{:url('system/component/uploader')}",
+            'uploader': "<?php echo url('system/component/uploader'); ?>",
             //获取文件列表的后台地址
 
-            'filesLists': "{:url('system/component/filesLists')}?",
+            'filesLists': "<?php echo url('system/component/filesLists'); ?>?",
         };
     </script>
     <script src="__STATIC__/node_modules/hdjs/app/util.js"></script>
@@ -72,11 +73,11 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="fa fa-w fa-user"></i>
-                            {:session('admin.admin_username')}
+                            <?php echo session('admin.admin_username'); ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{:url('admin/entry/pass')}">修改密码</a></li>
+                            <li><a href="<?php echo url('admin/entry/pass'); ?>">修改密码</a></li>
                             <li role="separator" class="divider"></li>
                             <li><a href="javascript:" onclick="logOut()">退出</a></li>
                         </ul>
@@ -102,7 +103,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample">
-                    <a href="{:url('admin/category/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/category/index'); ?>" class="list-group-item">
                         <i class="fa fa-institution " aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         栏目列表
@@ -119,7 +120,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample2">
-                    <a href="{:url('admin/tag/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/tag/index'); ?>" class="list-group-item">
                         <i class="fa fa-tags" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         标签列表
@@ -136,12 +137,12 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample3">
-                    <a href="{:url('admin/article/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/article/index'); ?>" class="list-group-item">
                         <i class="fa fa-navicon" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         文章列表
                     </a>
-                    <a href="{:url('admin/recycle/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/recycle/index'); ?>" class="list-group-item">
                         <i class="fa fa-bitbucket" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         回收站
@@ -158,7 +159,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample4">
-                    <a href="{:url('admin/link/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/link/index'); ?>" class="list-group-item">
                         <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         友链首页
@@ -175,7 +176,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample5">
-                    <a href="{:url('admin/website/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/website/index'); ?>" class="list-group-item">
                         <i class="fa fa-wrench" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         网站配置
@@ -186,7 +187,48 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            {block name='content'}{/block}
+            
+<ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+    <li>
+        <a href=""><i class="fa fa-cogs"></i>
+            站点管理</a>
+    </li>
+    <li class="active">
+        <a href="">站点配置</a>
+    </li>
+</ol>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#tab1">站点配置</a></li>
+</ul>
+<form action="" method="post">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th width="5%">编号</th>
+                    <th>配置名称</th>
+                    <th width="20%">配置值</th>
+                    <th >描述</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>
+                        <input type="text" class="form-control" value="" onblur="">
+                    </td>
+                    <td>描述</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+<div class="pagination pagination-sm pull-right">
+</div>
+
         </div>
     </div>
     <!--右侧主体区域部分结束 end-->
@@ -200,7 +242,7 @@
     function logOut() {
         util.confirm('确定退出登陆吗？',function(){
             //执行成功
-            location.href="{:url('admin/entry/logOut')}";
+            location.href="<?php echo url('admin/entry/logOut'); ?>";
         })
     }
 </script>

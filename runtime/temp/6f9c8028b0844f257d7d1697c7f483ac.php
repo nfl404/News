@@ -1,3 +1,4 @@
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:82:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/recycle/edit.html";i:1501815695;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1501812491;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,10 +36,10 @@
             //框架目录
             'base': '__STATIC__/node_modules/hdjs',
             //上传文件后台地址
-            'uploader': "{:url('system/component/uploader')}",
+            'uploader': "<?php echo url('system/component/uploader'); ?>",
             //获取文件列表的后台地址
 
-            'filesLists': "{:url('system/component/filesLists')}?",
+            'filesLists': "<?php echo url('system/component/filesLists'); ?>?",
         };
     </script>
     <script src="__STATIC__/node_modules/hdjs/app/util.js"></script>
@@ -72,13 +73,13 @@
                     <li class="dropdown">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button">
                             <i class="fa fa-w fa-user"></i>
-                            {:session('admin.admin_username')}
+                            <?php echo session('admin.admin_username'); ?>
                             <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
-                            <li><a href="{:url('admin/entry/pass')}">修改密码</a></li>
+                            <li><a href="<?php echo url('admin/entry/pass'); ?>">修改密码</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="javascript:" onclick="logOut()">退出</a></li>
+                            <li><a href="">退出</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -102,7 +103,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample">
-                    <a href="{:url('admin/category/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/category/index'); ?>" class="list-group-item">
                         <i class="fa fa-institution " aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         栏目列表
@@ -119,7 +120,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample2">
-                    <a href="{:url('admin/tag/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/tag/index'); ?>" class="list-group-item">
                         <i class="fa fa-tags" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         标签列表
@@ -136,12 +137,12 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample3">
-                    <a href="{:url('admin/article/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/article/index'); ?>" class="list-group-item">
                         <i class="fa fa-navicon" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         文章列表
                     </a>
-                    <a href="{:url('admin/recycle/index')}" class="list-group-item">
+                    <a href="<?php echo url('admin/recycle/index'); ?>" class="list-group-item">
                         <i class="fa fa-bitbucket" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         回收站
@@ -158,7 +159,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample4">
-                    <a href="{:url('admin/link/index')}" class="list-group-item">
+                    <a href="" class="list-group-item">
                         <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         友链首页
@@ -175,7 +176,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample5">
-                    <a href="{:url('admin/website/index')}" class="list-group-item">
+                    <a href="" class="list-group-item">
                         <i class="fa fa-wrench" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         网站配置
@@ -186,7 +187,87 @@
         </div>
         <!--右侧主体区域部分 start-->
         <div class="col-xs-12 col-sm-9 col-lg-10">
-            {block name='content'}{/block}
+            
+<ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+    <li>
+        <a href=""><i class="fa fa-cogs"></i>
+            文章管理</a>
+    </li>
+    <li class="active">
+        <a href="">回收站文章</a>
+    </li>
+</ol>
+<ul class="nav nav-tabs" role="tablist">
+    <li><a href="<?php echo url('index'); ?>">文章管理</a></li>
+    <li class="active"><a href="">文章编辑</a></li>
+</ul>
+<form class="form-horizontal" id="form"  action="" method="post">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">文章管理</h3>
+        </div>
+        <div class="panel-body">
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">文章标题</label>
+                <div class="col-sm-9">
+                    <input type="text" name="title"  class="form-control" placeholder="文章标题">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">文章作者</label>
+                <div class="col-sm-9">
+                    <input type="text" name="author"  class="form-control" placeholder="文章作者">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">所属分类</label>
+                <div class="col-sm-9">
+                    <select class="js-example-basic-single form-control" name="category_cid">
+                        <option value="0">请选择分类</option>
+                        <option value="">分类1</option>
+                        <option value="">分类2</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">标签</label>
+                <div class="col-sm-9">
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="" value=""> 标签1
+                    </label>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="" value=""> 标签2
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">缩略图</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <div class="input-group-btn">
+                            <input type="file" class="btn btn-default" name="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">文章摘要</label>
+                <div class="col-sm-9">
+                    <textarea type="text" name="digest"  class="form-control" placeholder="文章摘要"></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for=""  class="col-sm-2 control-label">文章内容</label>
+                <div class="col-sm-9">
+                    <textarea type="text" name="content"  class="form-control" placeholder="文章摘要"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">确定</button>
+</form>
+
+
         </div>
     </div>
     <!--右侧主体区域部分结束 end-->
@@ -196,13 +277,5 @@
     <br>
     Powered by <a href="http://www.niefuling.com">老聂</a> v1.0 © 2017.7.31
 </div>
-<script>
-    function logOut() {
-        util.confirm('确定退出登陆吗？',function(){
-            //执行成功
-            location.href="{:url('admin/entry/logOut')}";
-        })
-    }
-</script>
 </body>
 </html>
