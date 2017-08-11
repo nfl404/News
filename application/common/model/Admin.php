@@ -11,7 +11,7 @@ class Admin extends Model
 {
     protected $pk = 'admin_id';//主键
     //设置当前模型对应的完整数据表名称
-    protected $table = 'blog_admin';
+    protected $table = 'news_admin';
     //登录
     /**
      * @param $data

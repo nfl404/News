@@ -1,9 +1,9 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/entry/index.html";i:1501810047;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1501841677;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/entry/index.html";i:1502351264;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502351478;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>资讯网站后台管理系统</title>
+    <title>华地艺术品（上海）有限公司 - 艺术资讯网站后台管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="__STATIC__/admin/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="__STATIC__/admin/css/site.css" rel="stylesheet">
@@ -52,20 +52,20 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <h4 style="display: inline;line-height: 50px;float: left;margin: 0px"><a href="index.html" style="color: white;margin-left: -14px">资讯网管理系统</a>
+                <h4 style="display: inline;line-height: 50px;float: left;margin: 0px"><a href="index.html" style="color: white;margin-left: 14px">华地艺术品（上海）有限公司 - 艺术资讯网站后台管理系统</a>
                 </h4>
                 <div class="navbar-header">
                     <ul class="nav navbar-nav">
                         <!--<li>-->
-                            <!--<a href="http://www.kancloud.cn/manual/thinkphp5/118003" target="_blank"><i class="fa fa-w fa-file-code-o"></i>-->
-                                <!--在线文档</a>-->
+                        <!--<a href="http://www.kancloud.cn/manual/thinkphp5/118003" target="_blank"><i class="fa fa-w fa-file-code-o"></i>-->
+                        <!--在线文档</a>-->
                         <!--</li>-->
                         <!--<li>-->
-                            <!--<a href="http://fontawesome.dashgame.com/" target="_blank"><i-->
-                                    <!--class="fa fa-w fa-hand-o-right"></i> 图标库</a>-->
+                        <!--<a href="http://fontawesome.dashgame.com/" target="_blank"><i-->
+                        <!--class="fa fa-w fa-hand-o-right"></i> 图标库</a>-->
                         <!--</li>-->
                         <!--<li>-->
-                            <!--<a href="http://bbs.houdunwang.com" target="_blank"><i class="fa fa-w fa-forumbee"></i> 论坛</a>-->
+                        <!--<a href="http://bbs.houdunwang.com" target="_blank"><i class="fa fa-w fa-forumbee"></i> 论坛</a>-->
                         <!--</li>-->
                     </ul>
                 </div>
@@ -150,6 +150,50 @@
                 </ul>
                 <!--文章管理 end-->
 
+                <!--视频管理-->
+                <div class="panel-heading" role="button" data-toggle="collapse" href="#collapseExample6"
+                     aria-expanded="false" aria-controls="collapseExample">
+                    <h4 class="panel-title">视频管理</h4>
+                    <a class="panel-collapse" data-toggle="collapse" href="#collapseExample6" aria-expanded="true">
+                        <i class="fa fa-chevron-circle-down"></i>
+                    </a>
+                </div>
+                <ul class="list-group menus collapse in" id="collapseExample6">
+                    <a href="<?php echo url('admin/article/index'); ?>" class="list-group-item">
+                        <i class="fa fa-indent" aria-hidden="true"></i>
+                        <span class="pull-right" href=""></span>
+                        视频列表
+                    </a>
+                    <a href="<?php echo url('admin/recycle/index'); ?>" class="list-group-item">
+                        <i class="fa fa-bitbucket" aria-hidden="true"></i>
+                        <span class="pull-right" href=""></span>
+                        回收站
+                    </a>
+                </ul>
+                <!--视频管理 end-->
+
+                <!--音频管理-->
+                <div class="panel-heading" role="button" data-toggle="collapse" href="#collapseExample7"
+                     aria-expanded="false" aria-controls="collapseExample">
+                    <h4 class="panel-title">音频管理</h4>
+                    <a class="panel-collapse" data-toggle="collapse" href="#collapseExample7" aria-expanded="true">
+                        <i class="fa fa-chevron-circle-down"></i>
+                    </a>
+                </div>
+                <ul class="list-group menus collapse in" id="collapseExample7">
+                    <a href="<?php echo url('admin/article/index'); ?>" class="list-group-item">
+                        <i class="fa fa-list-ul" aria-hidden="true"></i>
+                        <span class="pull-right" href=""></span>
+                        音频列表
+                    </a>
+                    <a href="<?php echo url('admin/recycle/index'); ?>" class="list-group-item">
+                        <i class="fa fa-bitbucket" aria-hidden="true"></i>
+                        <span class="pull-right" href=""></span>
+                        回收站
+                    </a>
+                </ul>
+                <!--音频管理 end-->
+
                 <!--友情链接管理-->
                 <div class="panel-heading" role="button" data-toggle="collapse" href="#collapseExample4"
                      aria-expanded="false" aria-controls="collapseExample">
@@ -194,8 +238,9 @@
         <th class="active" colspan="10">温馨提示</th>
     </tr>
     <tr>
+        <td>资讯网地址：</td>
         <td colspan="10">
-            博客地址：<a href="http://www.blog.niefuling.com" target="_blank">www.blog.niefuling.com</a>
+            <a href="http://news.hdcac.com/" target="_blank">news.hdcac.com</a>
         </td>
     </tr>
     <tr>
@@ -203,17 +248,32 @@
     </tr>
     <tr>
         <td>核心框架</td>
-        <td colspan="5">Thinkphp5</td>
+        <td colspan="5"><a href="http://www.kancloud.cn/manual/thinkphp5/118003" target="_blank">Thinkphp5</a></td>
+    </tr>
+    <tr>
+        <td>图标库</td>
+        <td colspan="5"><a href="http://fontawesome.dashgame.com/" target="_blank">fontawesome.dashgame.com</a></td>
     </tr>
     <tr>
         <td>版本号</td>
-        <td colspan="5">1.0</td>
+        <td colspan="5"><a href="http://news.hdcac.com/" target="_blank">1.0</a></td>
     </tr>
     <tr>
         <td>开发者</td>
-        <td colspan="5">老聂</td>
+        <td colspan="5"><a href="http://blog.niefuling.com/" target="_blank">老聂</a></td>
     </tr>
     </tbody>
+    <!--<li>-->
+    <!--<a href="http://www.kancloud.cn/manual/thinkphp5/118003" target="_blank"><i class="fa fa-w fa-file-code-o"></i>-->
+    <!--在线文档</a>-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--<a href="http://fontawesome.dashgame.com/" target="_blank"><i-->
+    <!--class="fa fa-w fa-hand-o-right"></i> 图标库</a>-->
+    <!--</li>-->
+    <!--<li>-->
+    <!--<a href="http://bbs.houdunwang.com" target="_blank"><i class="fa fa-w fa-forumbee"></i> 论坛</a>-->
+    <!--</li>-->
 </table>
 
         </div>

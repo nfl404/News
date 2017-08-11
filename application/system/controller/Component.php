@@ -26,7 +26,7 @@ class Component extends Controller
                 'extension'  => $info->getExtension(),
                 'createtime' => time(),
                 'size'       => $info->getSize(),
-                'status'     => 1
+                'status'     => 2
             ];
             //halt($data);
             Db::name( 'attachment' )->insert( $data );
@@ -43,7 +43,7 @@ class Component extends Controller
         $db = Db::name( 'attachment' )
             ->whereIn( 'extension', explode( ',', strtolower( input("post.extensions") ) ) )
             ->order( 'id desc' );
-        $Res  = $db->paginate( 2 );
+        $Res  = $db->paginate( 5 );
         $data = [ ];
         if ( $Res->toArray() ) {
             //dump($Res->toArray());die;

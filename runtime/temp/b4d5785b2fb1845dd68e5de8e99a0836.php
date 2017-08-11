@@ -1,9 +1,9 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:79:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/tag/index.html";i:1501645949;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1501841677;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:79:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/tag/index.html";i:1501645949;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1501915048;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8"/>
-    <title>资讯网站后台管理系统</title>
+    <title>华地艺术品（上海）有限公司 - 艺术资讯网站后台管理系统</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <link href="__STATIC__/admin/bootstrap-3.3.0-dist/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="__STATIC__/admin/css/site.css" rel="stylesheet">
@@ -52,7 +52,7 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <h4 style="display: inline;line-height: 50px;float: left;margin: 0px"><a href="index.html" style="color: white;margin-left: -14px">资讯网管理系统</a>
+                <h4 style="display: inline;line-height: 50px;float: left;margin: 0px"><a href="index.html" style="color: white;margin-left: 14px">华地艺术品（上海）有限公司 - 艺术资讯网站后台管理系统</a>
                 </h4>
                 <div class="navbar-header">
                     <ul class="nav navbar-nav">

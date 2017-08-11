@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/category/store.html";i:1501557197;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1501812491;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:84:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/category/store.html";i:1501557197;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1501841677;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -79,7 +79,7 @@
                         <ul class="dropdown-menu">
                             <li><a href="<?php echo url('admin/entry/pass'); ?>">修改密码</a></li>
                             <li role="separator" class="divider"></li>
-                            <li><a href="">退出</a></li>
+                            <li><a href="javascript:" onclick="logOut()">退出</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -159,7 +159,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample4">
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/link/index'); ?>" class="list-group-item">
                         <i class="fa fa-paper-plane-o" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         友链首页
@@ -176,7 +176,7 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample5">
-                    <a href="" class="list-group-item">
+                    <a href="<?php echo url('admin/website/index'); ?>" class="list-group-item">
                         <i class="fa fa-wrench" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         网站配置
@@ -243,5 +243,13 @@
     <br>
     Powered by <a href="http://www.niefuling.com">老聂</a> v1.0 © 2017.7.31
 </div>
+<script>
+    function logOut() {
+        util.confirm('确定退出登陆吗？',function(){
+            //执行成功
+            location.href="<?php echo url('admin/entry/logOut'); ?>";
+        })
+    }
+</script>
 </body>
 </html>

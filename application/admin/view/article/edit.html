@@ -96,4 +96,27 @@
     <input type="hidden" name="arc_id" value="{$oldData['arc_id']}">
     <button class="btn btn-primary" type="submit">确定</button>
 </form>
+<script>
+    //上传图片
+    function upImage(obj) {
+        require(['util'], function (util) {
+            options = {
+                multiple: false,//是否允许多图上传
+                //data是向后台服务器提交的POST数据
+                data:{name:'老聂',year:2099},
+            };
+            util.image(function (images) {          //上传成功的图片，数组类型
+
+                $("[name='arc_thumb']").val(images[0]);
+                $(".img-thumbnail").attr('src', images[0]);
+            }, options)
+        });
+    }
+
+    //移除图片
+    function removeImg(obj) {
+        $(obj).prev('img').attr('src', '__STATIC__/images/nopic.jpg');
+        $(obj).parent().prev().find('input').val('');
+    }
+</script>
 {/block}

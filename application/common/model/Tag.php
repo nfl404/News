@@ -7,7 +7,7 @@ use think\Model;
 class Tag extends Model
 {
     protected $pk = 'tag_id';//主键
-    protected $table = 'blog_tag';//表名
+    protected $table = 'news_tag';//表名
     /**
      * 添加标签
      */

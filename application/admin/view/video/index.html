@@ -1,0 +1,76 @@
+{extend name='base'/}
+{block name='content'}
+<ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
+    <li>
+        <a href=""><i class="fa fa-cogs"></i>
+            视频管理</a>
+    </li>
+    <li class="active">
+        <a href="">视频列表</a>
+    </li>
+</ol>
+<ul class="nav nav-tabs" role="tablist">
+    <li class="active"><a href="#tab1">视频管理</a></li>
+    <li><a href="{:url('store')}">视频添加</a></li>
+</ul>
+<form action="" method="post">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th width="5%">编号</th>
+                    <th>视频名称</th>
+                    <th>上传作者</th>
+                    <th width="6%">排序</th>
+                    <th>所属分类</th>
+                    <th>添加时间</th>
+                    <th>更新时间</th>
+                    <th width="200">操作</th>
+                </tr>
+                </thead>
+                <tbody>
+                {foreach name='field' item='vo'}
+                <tr>
+                    <td>{$vo['video_id']}</td>
+                    <td>{$vo['video_title']}</td>
+                    <td>{$vo['video_author']}</td>
+                    <td>
+                        <input type="text" class="form-control" value="{$vo['video_sort']}">
+                    </td>
+                    <td>{$vo['cate_name']}</td>
+                    <td>{:date('Y-m-d h:i',$vo['sendtime'])}</td>
+                    {if condition="$vo['updatetime']==0"}
+                    <td>暂未更新</td>
+                    {else/}
+                    <td>{:date('Y-m-d h:i',$vo['updatetime'])}</td>
+                    {/if}
+
+                    <td>
+                        <div class="btn-group">
+                            <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="{:url('edit',['video_id'=>$vo['video_id']])}">编辑</a></li>
+                                <li class="divider"></li>
+                                <li><a href="javascript:" onclick="del({$vo['video_id']})">删除到回收站</a></li>
+                            </ul>
+                        </div>
+                    </td>
+                </tr>
+                {/foreach}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</form>
+<div class="pagination pagination-sm pull-right">
+    {$field->render()}
+</div>
+<script>
+    function del(video_id) {
+        util.confirm('确定删除吗',function(){
+            location.href="{:url('del')}"+'?video_id='+video_id;
+        })
+    }
+</script>
+{/block}

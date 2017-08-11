@@ -7,7 +7,7 @@ use think\Model;
 class Article extends Model
 {
     protected $pk = 'arc_id';
-    protected $table = 'blog_article';
+    protected $table = 'news_article';
     protected $auto = ['admin_id'];
     protected $insert = ['sendtime'];
     protected $update = ['updatetime'];
@@ -131,6 +131,62 @@ class Article extends Model
             return ['valid'=>1,'msg'=>'操作成功'];
         }else{
             return ['valid'=>0,'msg'=>'操作失败'];
+        }
+    }
+
+
+
+
+    /********************API***************************/
+
+
+    /**文章列表
+     * @param $cate_id   分类id，必传
+     * @param int $page  页数，默认为1，非必传
+     * @return \think\Paginator
+     */
+    public function apiGetArcList($cate_id,$page=1)
+    {
+        if (request()->isPost())
+        {
+            //cate_id分类id必传
+            if (request()->param('cate_id'))
+            {
+                $result = db('article')
+                    ->alias('a')
+                    ->join('__CATE__ c','a.cate_id=c.cate_id')
+                    ->where(['a.is_recycle'=>2,'a.cate_id'=>$cate_id])
+                    ->field('a.arc_id,a.arc_title,a.arc_author,a.sendtime,a.updatetime,a.arc_click,a.is_recycle,a.arc_thumb,a.cate_id,a.admin_id,a.arc_sort,c.cate_name')
+                    ->paginate(10,false,[
+                        'page'=>$page,
+                    ]);
+                if ($result)
+                {
+                    return ['status'=>200,'result'=>$result];
+                }else{
+                    return ['status'=>103,'msg'=>'服务器异常'];
+                }
+            }else{
+                return ['status'=>101,'msg'=>'参数错误'];
+            }
+        }
+    }
+
+    /**文章详情
+     * @param $arc_id
+     * @return array
+     */
+    public function apiGetArcDetail($arc_id){
+        if(request()->isPost())
+        {
+            //arc_id文章id必传
+            if (request()->param('arc_id'))
+            {
+                $result = $this->db()->where('arc_id',$arc_id)->find();
+                return ['status'=>200,'result'=>$result];
+            }else{
+                return ['status'=>101,'msg'=>'参数错误'];
+            }
         }
     }
 

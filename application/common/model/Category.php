@@ -8,7 +8,7 @@ use think\Model;
 class Category extends Model
 {
     protected $pk = 'cate_id';
-    protected $table = 'blog_cate';
+    protected $table = 'news_cate';
     /**
      * 获取分类数据【树状结构】
      */
@@ -98,6 +98,23 @@ class Category extends Model
             return ['valid'=>0,'msg'=>'删除失败'];
         }
 
+
+    }
+
+
+    /********************API***************************/
+    /**文章分类
+     * @return false|\PDOStatement|string|\think\Collection
+     */
+    public function apiGetCate()
+    {
+        $result = $this->db()->where('cate_pid', 0)->select();
+        if ($result)
+        {
+            return ['status'=>200,'result'=>$result];
+        }else{
+            return ['status'=>103,'msg'=>'服务器异常'];
+        }
 
     }
 }

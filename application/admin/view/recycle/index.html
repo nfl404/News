@@ -6,7 +6,7 @@
             文章管理</a>
     </li>
     <li class="active">
-        <a href="">回收站文章</a>
+        <a href="">回收站</a>
     </li>
 </ol>
 <ul class="nav nav-tabs" role="tablist">
@@ -48,9 +48,9 @@
                         <div class="btn-group">
                             <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span></button>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="{:url('edit')}">编辑</a></li>
+                                <li><a href="javascript:" onclick="getBack({$vo['arc_id']})">移回列表</a></li>
                                 <li class="divider"></li>
-                                <li><a href="javascript:" onclick="getBack({$vo['arc_id']})">放回文章列表</a></li>
+                                <li><a href="javascript:" onclick="recive()" style="color: red;">永久删除</a></li>
                             </ul>
                         </div>
                     </td>
@@ -69,6 +69,11 @@
             //alert('点击确定后执行的回调函数');
             location.href="{:url('getBack')}"+'?arc_id='+arc_id;
         })
+    }
+    function recive() {
+        util.confirm('建议不要永久删除数据！<br>避免数据丢失造成运营成本等严重问题！',function () {
+
+        });
     }
 </script>
 {/block}

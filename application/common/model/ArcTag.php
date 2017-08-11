@@ -6,5 +6,5 @@ use think\Model;
 
 class ArcTag extends Model
 {
-    protected $table = 'blog_arc_tag';
+    protected $table = 'news_arc_tag';
 }
