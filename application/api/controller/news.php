@@ -3,6 +3,7 @@
 namespace app\api\controller;
 
 use app\common\model\Article;
+use app\common\model\Audio;
 use app\common\model\Category;
 use app\common\model\Video;
 use think\Controller;
@@ -58,6 +59,31 @@ class news extends Controller
     public function vid_detail()
     {
         $result = (new Video())->apiGetVidDetail(request()->param('video_id'));
+        exit(json_encode($result));
+    }
+
+    /**
+     * 音频分类
+     */
+    public function aud_cate()
+    {
+        $result = (new Category())->apiGetCate();
+        exit(json_encode($result));
+    }
+    /**
+     * 音频列表
+     */
+    public function aud_list()
+    {
+        $result = (new Audio())->apiGetAudList(request()->param('cate_id'),request()->param('page'));
+        exit(json_encode($result));
+    }
+    /**
+     * 音频详情
+     */
+    public function aud_detail()
+    {
+        $result = (new Audio())->apiGetAudDetail(request()->param('audio_id'));
         exit(json_encode($result));
     }
 

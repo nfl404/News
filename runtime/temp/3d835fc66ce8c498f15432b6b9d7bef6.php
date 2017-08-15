@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/website/index.html";i:1501840037;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502421069;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:80:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/audio/edit.html";i:1502681316;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502681609;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -183,12 +183,12 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample7">
-                    <a href="<?php echo url('admin/article/index'); ?>" class="list-group-item">
+                    <a href="<?php echo url('admin/audio/index'); ?>" class="list-group-item">
                         <i class="fa fa-list-ul" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         音频列表
                     </a>
-                    <a href="<?php echo url('admin/recycle/index'); ?>" class="list-group-item">
+                    <a href="<?php echo url('admin/audio/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-bitbucket" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         回收站
@@ -237,43 +237,152 @@
 <ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
     <li>
         <a href=""><i class="fa fa-cogs"></i>
-            站点管理</a>
+            音频管理</a>
     </li>
     <li class="active">
-        <a href="">站点配置</a>
+        <a href="">音频编辑</a>
     </li>
 </ol>
 <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="#tab1">站点配置</a></li>
+    <li><a href="<?php echo url('index'); ?>">音频管理</a></li>
+    <li class="active"><a href="">音频编辑</a></li>
 </ul>
-<form action="" method="post">
+<form class="form-horizontal" id="form"  action="" method="post">
     <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">音频管理</h3>
+        </div>
         <div class="panel-body">
-            <table class="table table-hover">
-                <thead>
-                <tr>
-                    <th width="5%">编号</th>
-                    <th>配置名称</th>
-                    <th width="20%">配置值</th>
-                    <th >描述</th>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>1</td>
-                    <td>2</td>
-                    <td>
-                        <input type="text" class="form-control" value="" onblur="">
-                    </td>
-                    <td>描述</td>
-                </tr>
-                </tbody>
-            </table>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">音频标题</label>
+                <div class="col-sm-9">
+                    <input type="text" name="audio_title"  class="form-control" placeholder="音频标题" value="<?php echo $audioData['audio_title']; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">上传作者</label>
+                <div class="col-sm-9">
+                    <input type="text" name="audio_author"  class="form-control" placeholder="音频作者" value="<?php echo $audioData['audio_author']; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">音频排序</label>
+                <div class="col-sm-9">
+                    <input type="number" name="audio_sort"  class="form-control" placeholder="音频排序" value="<?php echo $audioData['audio_sort']; ?>">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">所属分类</label>
+                <div class="col-sm-9">
+                    <select class="js-example-basic-single form-control" name="cate_id">
+                        <option value="0">请选择分类</option>
+                        <?php if(is_array($cateData) || $cateData instanceof \think\Collection || $cateData instanceof \think\Paginator): if( count($cateData)==0 ) : echo "" ;else: foreach($cateData as $key=>$vo): ?>
+                        <option <?php if($audioData['cate_id']==$vo['cate_id']): ?>selected<?php endif; ?> value="<?php echo $vo['cate_id']; ?>"><?php echo $vo['_cate_name']; ?></option>
+                        <?php endforeach; endif; else: echo "" ;endif; ?>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">标签</label>
+                <div class="col-sm-9">
+                    <?php if(is_array($tagData) || $tagData instanceof \think\Collection || $tagData instanceof \think\Paginator): if( count($tagData)==0 ) : echo "" ;else: foreach($tagData as $key=>$vo): ?>
+                    <label class="checkbox-inline">
+                        <input type="checkbox" name="tag[]" value="<?php echo $vo['tag_id']; ?>" <?php if(is_array($arcTag) || $arcTag instanceof \think\Collection || $arcTag instanceof \think\Paginator): if( count($arcTag)==0 ) : echo "" ;else: foreach($arcTag as $key=>$v): if($v['aud_id']==$audioData['audio_id']&$v['tag_id']==$vo['tag_id']): ?>checked="checked"<?php endif; endforeach; endif; else: echo "" ;endif; ?>> <?php echo $vo['tag_name']; ?>
+                    </label>
+                    <?php endforeach; endif; else: echo "" ;endif; ?>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">缩略图</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="audio_thumb" readonly="" value="<?php echo $audioData['audio_thumb']; ?>">
+                        <div class="input-group-btn">
+                            <button onclick="upImage(this)" class="btn btn-default" type="button">选择图片</button>
+                        </div>
+                    </div>
+                    <div class="input-group" style="margin-top:5px;">
+                        <img src="<?php echo $audioData['audio_thumb']; ?>" class="img-responsive img-thumbnail" width="150">
+                        <em class="close" style="position:absolute; top: 0px; right: -14px;" title="删除这张图片" onclick="removeImg(this)">×</em>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">视频文件</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="audio_url" readonly="" value="<?php echo $audioData['audio_url']; ?>">
+                        <div class="input-group-btn">
+                            <button onclick="upFile(this)" class="btn btn-default" type="button">选择文件</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="" class="col-sm-2 control-label">音频摘要</label>
+                <div class="col-sm-9">
+                    <textarea type="text" name="audio_digest"  class="form-control" placeholder="音频摘要"><?php echo $audioData['audio_digest']; ?></textarea>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for=""  class="col-sm-2 control-label">音频内容</label>
+                <div class="col-sm-9">
+                    <textarea id="container"name="audio_content" style="height:300px;width:100%;"><?php echo $audioData['audio_content']; ?></textarea>
+                    <script>
+                        util.ueditor('container', {hash:2,data:'hd'}, function (editor) {
+                            //这是回调函数 editor是百度编辑器实例
+                        });
+                    </script>
+                    <!--第二个参数为添加到数据表中字段，hash为确定上传文件标识（可以以用户编号，标识为此用户上传的文件，系统使用这个字段值来显示文件列表），data为数据表中的data字段值，开发者根据业务需要自行添加-->
+                </div>
+            </div>
         </div>
     </div>
+    <input type="hidden" name="audio_id" value="<?php echo $audioData['audio_id']; ?>">
+    <button class="btn btn-primary" type="submit">确定</button>
 </form>
-<div class="pagination pagination-sm pull-right">
-</div>
+<script>
+    //上传图片
+    function upImage(obj) {
+        require(['util'], function (util) {
+            options = {
+                multiple: false,//是否允许多图上传
+                //data是向后台服务器提交的POST数据
+                data:{name:'老聂',year:2099},
+            };
+            util.image(function (images) {          //上传成功的图片，数组类型
+
+                $("[name='audio_thumb']").val(images[0]);
+                $(".img-thumbnail").attr('src', images[0]);
+            }, options)
+        });
+    }
+
+    //移除图片
+    function removeImg(obj) {
+        $(obj).prev('img').attr('src', '__STATIC__/images/nopic.jpg');
+        $(obj).parent().prev().find('input').val('');
+    }
+</script>
+<script>
+    //上传文件
+    function upFile(obj) {
+        require(['util'], function (util) {
+            options = {
+                extensions: 'mp3',
+                //data是向后台服务器提交的POST数据
+                data:{name:'老聂',year:2099},
+                //单个文件允许为5MB
+                fileSingleSizeLimit:5 * 1024 * 1024
+            };
+            util.file(function (files) {
+                //上传成功的文件，数组类型
+                console.log(files);
+                $("[name='audio_url']").val(files[0]);
+            }, options)
+        });
+    }
+</script>
 
         </div>
     </div>

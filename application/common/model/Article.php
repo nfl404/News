@@ -176,16 +176,32 @@ class Article extends Model
      * @param $arc_id
      * @return array
      */
-    public function apiGetArcDetail($arc_id){
+    public function apiGetArcDetail($article_id){
         if(request()->isPost())
         {
             //arc_id文章id必传
-            if (request()->param('arc_id'))
+            if (request()->param('article_id'))
             {
-                $result = $this->db()->where('arc_id',$arc_id)->find();
+                $result = $this->db()->where(['arc_id'=>$article_id,'is_recycle'=>2])->find();
                 return ['status'=>200,'result'=>$result];
             }else{
                 return ['status'=>101,'msg'=>'参数错误'];
+            }
+        }else{
+            if (request()->param('article_id'))
+            {
+                $result = $this->db()->where(['arc_id'=>$article_id,'is_recycle'=>2])->find();
+                //获取浏览量
+                //浏览量+1
+                $click_num = $result['arc_click'];
+                $this->where('arc_id',$article_id)->update(['arc_click'=>$click_num+1]);
+                if ($result)
+                {
+                    return $result;
+                }else{
+                    halt($this->getError());
+                }
+
             }
         }
     }

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/website/index.html";i:1501840037;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502421069;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/audio/recycle.html";i:1502681978;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502681609;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -183,12 +183,12 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample7">
-                    <a href="<?php echo url('admin/article/index'); ?>" class="list-group-item">
+                    <a href="<?php echo url('admin/audio/index'); ?>" class="list-group-item">
                         <i class="fa fa-list-ul" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         音频列表
                     </a>
-                    <a href="<?php echo url('admin/recycle/index'); ?>" class="list-group-item">
+                    <a href="<?php echo url('admin/audio/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-bitbucket" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         回收站
@@ -237,14 +237,14 @@
 <ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
     <li>
         <a href=""><i class="fa fa-cogs"></i>
-            站点管理</a>
+            音频管理</a>
     </li>
     <li class="active">
-        <a href="">站点配置</a>
+        <a href="">回收站</a>
     </li>
 </ol>
 <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="#tab1">站点配置</a></li>
+    <li class="active"><a href="#tab1">音频管理</a></li>
 </ul>
 <form action="" method="post">
     <div class="panel panel-default">
@@ -253,27 +253,64 @@
                 <thead>
                 <tr>
                     <th width="5%">编号</th>
-                    <th>配置名称</th>
-                    <th width="20%">配置值</th>
-                    <th >描述</th>
+                    <th>音频名称</th>
+                    <th>上传作者</th>
+                    <th width="6%">排序</th>
+                    <th>所属分类</th>
+                    <th>添加时间</th>
+                    <th>更新时间</th>
+                    <th width="200">操作</th>
                 </tr>
                 </thead>
                 <tbody>
+                <?php if(is_array($field) || $field instanceof \think\Collection || $field instanceof \think\Paginator): if( count($field)==0 ) : echo "" ;else: foreach($field as $key=>$vo): ?>
                 <tr>
-                    <td>1</td>
-                    <td>2</td>
+                    <td><?php echo $vo['audio_id']; ?></td>
+                    <td><?php echo $vo['audio_title']; ?></td>
+                    <td><?php echo $vo['audio_author']; ?></td>
                     <td>
-                        <input type="text" class="form-control" value="" onblur="">
+                        <input type="text" class="form-control" value="<?php echo $vo['audio_sort']; ?>">
                     </td>
-                    <td>描述</td>
+                    <td><?php echo $vo['cate_name']; ?></td>
+                    <td><?php echo date('Y-m-d h:i',$vo['sendtime']); ?></td>
+                    <?php if($vo['updatetime']==0): ?>
+                    <td>暂未更新</td>
+                    <?php else: ?>
+                    <td><?php echo date('Y-m-d h:i',$vo['updatetime']); ?></td>
+                    <?php endif; ?>
+
+                    <td>
+                        <div class="btn-group">
+                            <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span></button>
+                            <ul class="dropdown-menu dropdown-menu-right">
+                                <li><a href="javascript:" onclick="getRecycle(<?php echo $vo['audio_id']; ?>)">移回列表</a></li>
+                                <li class="divider"></li>
+                                <li><a href="javascript:" onclick="recive()" style="color: red;">永久删除</a></li>
+                            </ul>
+                        </div>
+                    </td>
                 </tr>
+                <?php endforeach; endif; else: echo "" ;endif; ?>
                 </tbody>
             </table>
         </div>
     </div>
 </form>
 <div class="pagination pagination-sm pull-right">
+    <?php echo $field->render(); ?>
 </div>
+<script>
+    function getRecycle(audio_id) {
+        util.confirm('确定移回音频列表吗？',function(){
+            location.href="<?php echo url('getRecycle'); ?>"+'?audio_id='+audio_id;
+        })
+    }
+    function recive() {
+        util.confirm('建议不要永久删除数据！<br>避免数据丢失造成运营成本等严重问题！',function () {
+
+        });
+    }
+</script>
 
         </div>
     </div>

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/video/store.html";i:1502422804;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502421069;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:81:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/video/store.html";i:1502680693;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502681609;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -183,12 +183,12 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample7">
-                    <a href="<?php echo url('admin/article/index'); ?>" class="list-group-item">
+                    <a href="<?php echo url('admin/audio/index'); ?>" class="list-group-item">
                         <i class="fa fa-list-ul" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         音频列表
                     </a>
-                    <a href="<?php echo url('admin/recycle/index'); ?>" class="list-group-item">
+                    <a href="<?php echo url('admin/audio/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-bitbucket" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         回收站
@@ -371,7 +371,7 @@
                 extensions: 'mp4',
                 //data是向后台服务器提交的POST数据
                 data:{name:'老聂',year:2099},
-                //单个文件允许为5MB
+                //单个文件允许为20MB
                 fileSingleSizeLimit:20 * 1024 * 1024
             };
             util.file(function (files) {

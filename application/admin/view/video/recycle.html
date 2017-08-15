@@ -67,7 +67,7 @@
 </div>
 <script>
     function getRecycle(video_id) {
-        util.confirm('确定移回视频列表吗',function(){
+        util.confirm('确定移回视频列表吗？',function(){
             location.href="{:url('getRecycle')}"+'?video_id='+video_id;
         })
     }

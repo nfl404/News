@@ -3,15 +3,14 @@
 <ol class="breadcrumb" style="background-color: #f9f9f9;padding:8px 0;margin-bottom:10px;">
     <li>
         <a href=""><i class="fa fa-cogs"></i>
-            视频管理</a>
+            音频管理</a>
     </li>
     <li class="active">
-        <a href="">视频列表</a>
+        <a href="">回收站</a>
     </li>
 </ol>
 <ul class="nav nav-tabs" role="tablist">
-    <li class="active"><a href="#tab1">视频管理</a></li>
-    <li><a href="{:url('store')}">视频添加</a></li>
+    <li class="active"><a href="#tab1">音频管理</a></li>
 </ul>
 <form action="" method="post">
     <div class="panel panel-default">
@@ -20,7 +19,7 @@
                 <thead>
                 <tr>
                     <th width="5%">编号</th>
-                    <th>视频名称</th>
+                    <th>音频名称</th>
                     <th>上传作者</th>
                     <th width="6%">排序</th>
                     <th>所属分类</th>
@@ -32,11 +31,11 @@
                 <tbody>
                 {foreach name='field' item='vo'}
                 <tr>
-                    <td>{$vo['video_id']}</td>
-                    <td>{$vo['video_title']}</td>
-                    <td>{$vo['video_author']}</td>
+                    <td>{$vo['audio_id']}</td>
+                    <td>{$vo['audio_title']}</td>
+                    <td>{$vo['audio_author']}</td>
                     <td>
-                        <input type="text" class="form-control" value="{$vo['video_sort']}">
+                        <input type="text" class="form-control" value="{$vo['audio_sort']}">
                     </td>
                     <td>{$vo['cate_name']}</td>
                     <td>{:date('Y-m-d h:i',$vo['sendtime'])}</td>
@@ -50,9 +49,9 @@
                         <div class="btn-group">
                             <button data-toggle="dropdown" class="btn btn-primary btn-xs dropdown-toggle">操作 <span class="caret"></span></button>
                             <ul class="dropdown-menu dropdown-menu-right">
-                                <li><a href="{:url('edit',['video_id'=>$vo['video_id']])}">编辑</a></li>
+                                <li><a href="javascript:" onclick="getRecycle({$vo['audio_id']})">移回列表</a></li>
                                 <li class="divider"></li>
-                                <li><a href="javascript:" onclick="del({$vo['video_id']})">删除到回收站</a></li>
+                                <li><a href="javascript:" onclick="recive()" style="color: red;">永久删除</a></li>
                             </ul>
                         </div>
                     </td>
@@ -67,10 +66,15 @@
     {$field->render()}
 </div>
 <script>
-    function del(video_id) {
-        util.confirm('确定删除到回收站吗？',function(){
-            location.href="{:url('del')}"+'?video_id='+video_id;
+    function getRecycle(audio_id) {
+        util.confirm('确定移回音频列表吗？',function(){
+            location.href="{:url('getRecycle')}"+'?audio_id='+audio_id;
         })
+    }
+    function recive() {
+        util.confirm('建议不要永久删除数据！<br>避免数据丢失造成运营成本等严重问题！',function () {
+
+        });
     }
 </script>
 {/block}

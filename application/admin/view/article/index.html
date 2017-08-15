@@ -67,7 +67,7 @@
 </div>
 <script>
     function del(arc_id) {
-        util.confirm('确定删除吗?',function(){
+        util.confirm('确定删除到回收站吗?',function(){
             //alert('点击确定后执行的回调函数');
             location.href="{:url('del')}"+'?arc_id='+arc_id;
         })

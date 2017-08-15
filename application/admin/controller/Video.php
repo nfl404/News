@@ -60,7 +60,8 @@ class Video extends Controller
         }
 
         //获取视频video_id
-        $video_id = input('params.video_id');
+        $video_id = input('param.video_id');
+        //halt($video_id);exit;
         //获取视频数据
         $videoData = $this->db->find($video_id);
         //halt($videoData);exit;
@@ -96,7 +97,7 @@ class Video extends Controller
         $res = $this->db->del(input('get.video_id'));
         if ($res['valid'])
         {
-            $this->success($res['msg'],'index');exit;
+            $this->success($res['msg'],'recycle');exit;
         }else{
             $this->error($res['msg']);exit;
         }
@@ -108,7 +109,7 @@ class Video extends Controller
         $res = $this->db->getRecycle(input('get.video_id'));
         if ($res['valid'])
         {
-            $this->success($res['msg'],'recycle');exit;
+            $this->success($res['msg'],'index');exit;
         }else{
             $this->error($res['msg']);exit;
         }

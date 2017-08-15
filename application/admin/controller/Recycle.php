@@ -34,7 +34,7 @@ class Recycle extends Controller
         $res = $this->db->getBack(input('get.arc_id'));
         if ($res['valid'])
         {
-            $this->success($res['msg'],'index');exit;
+            $this->success($res['msg'],'article/index');exit;
         }else{
             $this->error($res['msg']);exit;
         }

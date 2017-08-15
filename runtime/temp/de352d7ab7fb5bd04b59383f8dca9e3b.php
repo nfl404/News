@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/article/index.html";i:1502267769;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502421069;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/article/index.html";i:1502694903;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502705628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -183,12 +183,12 @@
                     </a>
                 </div>
                 <ul class="list-group menus collapse in" id="collapseExample7">
-                    <a href="<?php echo url('admin/article/index'); ?>" class="list-group-item">
+                    <a href="<?php echo url('admin/audio/index'); ?>" class="list-group-item">
                         <i class="fa fa-list-ul" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         音频列表
                     </a>
-                    <a href="<?php echo url('admin/recycle/index'); ?>" class="list-group-item">
+                    <a href="<?php echo url('admin/audio/recycle'); ?>" class="list-group-item">
                         <i class="fa fa-bitbucket" aria-hidden="true"></i>
                         <span class="pull-right" href=""></span>
                         回收站
@@ -301,7 +301,7 @@
 </div>
 <script>
     function del(arc_id) {
-        util.confirm('确定删除吗?',function(){
+        util.confirm('确定删除到回收站吗?',function(){
             //alert('点击确定后执行的回调函数');
             location.href="<?php echo url('del'); ?>"+'?arc_id='+arc_id;
         })
