@@ -2,10 +2,9 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
 
 //栏目管理
-class Category extends Controller
+class Category extends Common
 {
 
     protected $db;

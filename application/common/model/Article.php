@@ -23,15 +23,18 @@ class Article extends Model
     {
         return time();
     }
+
     /**
      * 获取文章首页数据
      */
     public function getAll($recycle=2)
     {
-        return $data = db('article')->alias('a')
+        return $data = db('article')
+            ->order('arc_id desc')
+            ->alias('a')
             ->join('__CATE__ c','a.cate_id=c.cate_id')->where('a.is_recycle',$recycle)
             ->field('a.arc_id,a.arc_title,a.arc_author,a.sendtime,a.updatetime,a.arc_sort,c.cate_name')->paginate(10);
-        //halt($data);
+//        halt($data);
     }
     /**
      * 添加文章
@@ -54,7 +57,7 @@ class Article extends Model
             //文章标签中间表的添加
             foreach($data['tag'] as $v)
             {
-                $arcTagData= [
+                $arcTagData = [
                     'arc_id'=>$this->arc_id,
                     'tag_id'=>$v,
                 ];
@@ -153,6 +156,7 @@ class Article extends Model
             if (request()->param('cate_id'))
             {
                 $result = db('article')
+                    ->order('arc_id desc')
                     ->alias('a')
                     ->join('__CATE__ c','a.cate_id=c.cate_id')
                     ->where(['a.is_recycle'=>2,'a.cate_id'=>$cate_id])
@@ -160,6 +164,17 @@ class Article extends Model
                     ->paginate(10,false,[
                         'page'=>$page,
                     ]);
+
+                if ($result)
+                {
+                    foreach ($result as $val)
+                    {
+                        $val['arc_thumb'] = 'sssss';
+
+                    }
+                    return  $result;
+                }
+
                 if ($result)
                 {
                     return ['status'=>200,'result'=>$result];
@@ -176,25 +191,48 @@ class Article extends Model
      * @param $arc_id
      * @return array
      */
-    public function apiGetArcDetail($article_id){
+    public function apiGetArcDetail(){
         if(request()->isPost())
         {
             //arc_id文章id必传
             if (request()->param('article_id'))
             {
-                $result = $this->db()->where(['arc_id'=>$article_id,'is_recycle'=>2])->find();
-                return ['status'=>200,'result'=>$result];
+                //如果用户登录，保存用户浏览记录
+                if (request()->param('history_post_id')&&request()->param('history_author_id')&&request()->param('history_author')&&request()->param('history_type'))
+                {
+//                    $res = (new History())->find(request()->param());
+                    $res = (new History())->where(['history_post_id'=>request()->param('history_post_id'),'history_author_id'=>request()->param('history_author_id')])->find();
+                    if ($res)
+                    {
+                        (new History())->allowField(true)->save(request()->param(),['history_post_id'=>request()->param('history_post_id'),'history_author_id'=>request()->param('history_author_id')]);
+                    }else {
+                        (new History())->allowField(true)->save(request()->param());
+                    }
+                }
+
+                $result = $this->db()->where(['arc_id'=>request()->param('article_id'),'is_recycle'=>2])->find();
+                //获取浏览量
+                //浏览量+1
+                $click_num = $result['arc_click'];
+                $this->where('arc_id',request()->param('article_id'))->update(['arc_click'=>$click_num+1]);
+                if ($result)
+                {
+                    return ['status'=>200,'result'=>$result];
+                }else{
+                    return ['status'=>103,'msg'=>'服务器异常'];
+                }
+
             }else{
                 return ['status'=>101,'msg'=>'参数错误'];
             }
         }else{
             if (request()->param('article_id'))
             {
-                $result = $this->db()->where(['arc_id'=>$article_id,'is_recycle'=>2])->find();
+                $result = $this->db()->where(['arc_id'=>request()->param('article_id'),'is_recycle'=>2])->find();
                 //获取浏览量
                 //浏览量+1
                 $click_num = $result['arc_click'];
-                $this->where('arc_id',$article_id)->update(['arc_click'=>$click_num+1]);
+                $this->where('arc_id',request()->param('article_id'))->update(['arc_click'=>$click_num+1]);
                 if ($result)
                 {
                     return $result;
@@ -205,5 +243,25 @@ class Article extends Model
             }
         }
     }
+
+    //文章搜索
+    public function apiGetArcSearch()
+    {
+        if(request()->isPost()) {
+            //return request()->param();exit;
+            if (request()->param('arc_content'))
+            {
+                $where['arc_title'] = array('like','%'.request()->param('arc_content').'%');
+                $whereOr['arc_content'] = array('like','%'.request()->param('arc_content').'%');
+                $result = $this->db()->order('arc_id desc')->where($where)->whereOr($whereOr)->paginate(10);
+                return ['status'=>200, 'result'=>$result];
+            }else{
+                return ['status'=>101,'msg'=>'参数错误'];
+            }
+        }else{
+            return ['status'=>103,'msg'=>'错误的请求方式'];
+        }
+    }
+
 
 }

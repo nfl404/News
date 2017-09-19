@@ -3,9 +3,8 @@
 namespace app\admin\controller;
 
 use app\common\model\Category;
-use think\Controller;
 
-class Audio extends Controller
+class Audio extends Common
 {
     protected $db;
     public function _initialize()

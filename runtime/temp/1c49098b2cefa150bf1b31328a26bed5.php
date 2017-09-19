@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:82:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/article/edit.html";i:1502439691;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502705628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:82:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/article/edit.html";i:1505205397;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502705628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

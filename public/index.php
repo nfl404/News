@@ -13,6 +13,7 @@
 
 // 定义应用目录
 define('APP_PATH', __DIR__ . '/../application/');
-define("HD_ROOT",'http://10.0.81:8888/');
+//define("HD_ROOT",'http://10.0.0.160:8888/');
+define("HD_ROOT",'http://news.com:8888/');
 // 加载框架引导文件
 require __DIR__ . '/../thinkphp/start.php';

@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:82:"/Users/huadiwenhua/Desktop/News/public/../application/web/view/article/detail.html";i:1502784951;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:1:{s:82:"/Users/huadiwenhua/Desktop/News/public/../application/web/view/article/detail.html";i:1503481417;}*/ ?>
 <!DOCTYPE html>
 <html lang="en" style="font-size: 124.4px">
 <head>
@@ -74,6 +74,10 @@
             line-height: 1.5em;
             word-break: break-all;
             color: #404040;
+        }
+        iframe {
+            width: 6.8rem;
+            height: 4.2rem;
         }
     </style>
 </head>

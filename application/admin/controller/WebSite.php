@@ -2,9 +2,8 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
 
-class WebSite extends Controller
+class WebSite extends Common
 {
     //首页
     public function index()

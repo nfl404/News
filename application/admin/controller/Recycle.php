@@ -2,9 +2,7 @@
 
 namespace app\admin\controller;
 
-use think\Controller;
-
-class Recycle extends Controller
+class Recycle extends Common
 {
     protected $db;
     protected function _initialize()

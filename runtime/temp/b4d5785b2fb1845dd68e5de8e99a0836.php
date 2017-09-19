@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:79:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/tag/index.html";i:1501645949;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1501915048;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:79:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/tag/index.html";i:1501645949;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502705628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -52,20 +52,22 @@
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <h4 style="display: inline;line-height: 50px;float: left;margin: 0px"><a href="index.html" style="color: white;margin-left: 14px">华地艺术品（上海）有限公司 - 艺术资讯网站后台管理系统</a>
+                <h4 style="display: inline;line-height: 50px;float: left;margin: 0px">
+                    <img src="__STATIC__/images/logo.png" style="width: 50px; margin: 10px;float:left">
+                    <a href="index.html" style="color: white;margin-left: 14px;margin-top: 10px ;float: left">华地艺术品（上海）有限公司 - 艺术资讯网站后台管理系统</a>
                 </h4>
                 <div class="navbar-header">
                     <ul class="nav navbar-nav">
                         <!--<li>-->
-                            <!--<a href="http://www.kancloud.cn/manual/thinkphp5/118003" target="_blank"><i class="fa fa-w fa-file-code-o"></i>-->
-                                <!--在线文档</a>-->
+                        <!--<a href="http://www.kancloud.cn/manual/thinkphp5/118003" target="_blank"><i class="fa fa-w fa-file-code-o"></i>-->
+                        <!--在线文档</a>-->
                         <!--</li>-->
                         <!--<li>-->
-                            <!--<a href="http://fontawesome.dashgame.com/" target="_blank"><i-->
-                                    <!--class="fa fa-w fa-hand-o-right"></i> 图标库</a>-->
+                        <!--<a href="http://fontawesome.dashgame.com/" target="_blank"><i-->
+                        <!--class="fa fa-w fa-hand-o-right"></i> 图标库</a>-->
                         <!--</li>-->
                         <!--<li>-->
-                            <!--<a href="http://bbs.houdunwang.com" target="_blank"><i class="fa fa-w fa-forumbee"></i> 论坛</a>-->
+                        <!--<a href="http://bbs.houdunwang.com" target="_blank"><i class="fa fa-w fa-forumbee"></i> 论坛</a>-->
                         <!--</li>-->
                     </ul>
                 </div>
@@ -149,6 +151,50 @@
                     </a>
                 </ul>
                 <!--文章管理 end-->
+
+                <!--视频管理-->
+                <div class="panel-heading" role="button" data-toggle="collapse" href="#collapseExample6"
+                     aria-expanded="false" aria-controls="collapseExample">
+                    <h4 class="panel-title">视频管理</h4>
+                    <a class="panel-collapse" data-toggle="collapse" href="#collapseExample6" aria-expanded="true">
+                        <i class="fa fa-chevron-circle-down"></i>
+                    </a>
+                </div>
+                <ul class="list-group menus collapse in" id="collapseExample6">
+                    <a href="<?php echo url('admin/video/index'); ?>" class="list-group-item">
+                        <i class="fa fa-indent" aria-hidden="true"></i>
+                        <span class="pull-right" href=""></span>
+                        视频列表
+                    </a>
+                    <a href="<?php echo url('admin/video/recycle'); ?>" class="list-group-item">
+                        <i class="fa fa-bitbucket" aria-hidden="true"></i>
+                        <span class="pull-right" href=""></span>
+                        回收站
+                    </a>
+                </ul>
+                <!--视频管理 end-->
+
+                <!--音频管理-->
+                <div class="panel-heading" role="button" data-toggle="collapse" href="#collapseExample7"
+                     aria-expanded="false" aria-controls="collapseExample">
+                    <h4 class="panel-title">音频管理</h4>
+                    <a class="panel-collapse" data-toggle="collapse" href="#collapseExample7" aria-expanded="true">
+                        <i class="fa fa-chevron-circle-down"></i>
+                    </a>
+                </div>
+                <ul class="list-group menus collapse in" id="collapseExample7">
+                    <a href="<?php echo url('admin/audio/index'); ?>" class="list-group-item">
+                        <i class="fa fa-list-ul" aria-hidden="true"></i>
+                        <span class="pull-right" href=""></span>
+                        音频列表
+                    </a>
+                    <a href="<?php echo url('admin/audio/recycle'); ?>" class="list-group-item">
+                        <i class="fa fa-bitbucket" aria-hidden="true"></i>
+                        <span class="pull-right" href=""></span>
+                        回收站
+                    </a>
+                </ul>
+                <!--音频管理 end-->
 
                 <!--友情链接管理-->
                 <div class="panel-heading" role="button" data-toggle="collapse" href="#collapseExample4"
