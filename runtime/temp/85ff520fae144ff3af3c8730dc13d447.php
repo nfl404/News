@@ -1,4 +1,4 @@
-<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/article/store.html";i:1505205128;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502705628;}*/ ?>
+<?php if (!defined('THINK_PATH')) exit(); /*a:2:{s:83:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/article/store.html";i:1505208658;s:74:"/Users/huadiwenhua/Desktop/News/public/../application/admin/view/base.html";i:1502705628;}*/ ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -339,8 +339,8 @@
             };
             util.image(function (images) {          //上传成功的图片，数组类型
 
-                $("[name='arc_thumb']").val(__STATIC__/images[0]);
-                $(".img-thumbnail").attr('src', __STATIC__/images[0]);
+                $("[name='arc_thumb']").val(images[0]);
+                $(".img-thumbnail").attr('src',images[0]);
             }, options)
         });
     }
